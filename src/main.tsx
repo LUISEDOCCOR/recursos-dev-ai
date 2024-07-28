@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "@fontsource-variable/dm-sans";
+import "@fontsource/dm-mono";
 import "./index.css";
 import { BrowserRouter } from "react-router-dom";
 

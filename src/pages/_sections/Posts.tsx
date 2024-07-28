@@ -9,7 +9,7 @@ interface Props {
 
 export const Posts: React.FC<Props> = ({ Posts, isLoading }) => {
   return (
-    <section className="flex flex-wrap items-center gap-6">
+    <section className="grid grid-cols-5 gap-4">
       {isLoading ? (
         <div className="mx-auto">Loading...</div>
       ) : Posts?.length == 0 ? (
