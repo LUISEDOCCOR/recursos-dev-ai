@@ -49,7 +49,7 @@ export const AddPage = () => {
     } else {
       if (await createPost(data)) {
         toast.success("Tu recurso está en espera para poder ser aceptado");
-        formRef.current?.rest();
+        formRef.current?.reset();
       } else {
         toast.info("No se puede añadir tu proyecto. Intenta más tarde.");
       }
