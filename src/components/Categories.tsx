@@ -1,6 +1,7 @@
 import { useGetData } from "../hooks/useGetData";
 import { Category } from "../types";
 import { useState, useEffect, ChangeEvent } from "react";
+import { Link } from "react-router-dom";
 
 interface Props {
   name: string;
@@ -50,29 +51,38 @@ export const Categories: React.FC<Props> = ({
     }
   }, [categories]);
 
-  return !isLoading && categories.length > 0 ? (
+  return !isLoading ? (
     <div className="flex h-auto flex-col gap-4">
       <label className={labelClass || "text-lg"} htmlFor={id}>
         {label}
       </label>
-      <select
-        className={
-          inputClass ||
-          "text-md w-full max-w-2xl rounded-lg border p-4 text-lg outline-none"
-        }
-        id={id}
-        onChange={selectCategory}
-        value={category?.id}
-        name={name}
-      >
-        {categories.map((category) => (
-          <option key={category.id} value={category.id}>
-            {category.name}
-          </option>
-        ))}
-      </select>
+      {categories.length != 0 ? (
+        <select
+          className={
+            inputClass ||
+            "text-md w-full max-w-2xl rounded-lg border p-4 text-lg outline-none"
+          }
+          id={id}
+          onChange={selectCategory}
+          value={category?.id}
+          name={name}
+        >
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <h2 className="text-md">
+          No hay categorias aún, agrega una
+          <strong className="underline underline-offset-8">
+            <Link to="/add"> Aquí</Link>
+          </strong>
+        </h2>
+      )}
     </div>
   ) : (
-    <span>Loading..</span>
+    <span>Loading...</span>
   );
 };
