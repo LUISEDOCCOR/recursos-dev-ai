@@ -4,7 +4,9 @@ import { Post, Data } from "../types";
 export const getPosts = async (endpoint?: string): Promise<Post[]> => {
   const response = await fetch(`${API_URL}/${endpoint || "posts"}`);
   const data = await response.json();
-  return data || [];
+  if (data?.mode != "error") {
+    return data || [];
+  } else return [];
 };
 
 export const createPost = async (body: Data): Promise<boolean> => {
