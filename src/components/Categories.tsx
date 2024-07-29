@@ -11,6 +11,7 @@ interface Props {
   labelClass?: string;
   onChange?: (category: Category | undefined) => void;
   currentCategory?: React.Dispatch<React.SetStateAction<Category | undefined>>;
+  callback?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const Categories: React.FC<Props> = ({
@@ -21,6 +22,7 @@ export const Categories: React.FC<Props> = ({
   labelClass,
   onChange,
   currentCategory,
+  callback,
 }) => {
   const { categories, isLoading, setEndpoint } = useGetData();
   const [category, setCategory] = useState<Category>();
@@ -32,6 +34,9 @@ export const Categories: React.FC<Props> = ({
     setCategory(cat);
     if (onChange) {
       onChange(cat);
+    }
+    if (callback) {
+      callback("");
     }
     if (currentCategory) {
       currentCategory(cat);

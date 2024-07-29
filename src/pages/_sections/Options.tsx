@@ -81,6 +81,7 @@ export const Options: React.FC<Props> = ({
             label="Filtra los recursos por categoría"
             inputClass="text-md w-full rounded-lg border p-2 text-lg outline-none"
             labelClass="text-lg font-medium"
+            callback={setUserMessage}
           />
         </section>
         <section>
