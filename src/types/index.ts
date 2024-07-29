@@ -22,3 +22,8 @@ export type Data = {
   urlImage: string;
   category_id: string;
 };
+
+export type AIPosts = {
+  posts: Post[];
+  user: string;
+};

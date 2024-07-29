@@ -11,7 +11,9 @@ export const Posts: React.FC<Props> = ({ Posts, isLoading }) => {
   return (
     <section className="grid grid-cols-5 gap-4">
       {isLoading ? (
-        <div className="mx-auto">Loading...</div>
+        <div className="col-span-5 flex justify-center">
+          <span className="loader"></span>
+        </div>
       ) : Posts?.length == 0 ? (
         <h2 className="text-xl">
           No hay recursos aún, agrega uno

@@ -1,6 +1,7 @@
 import React from "react";
 import { Post as PostType } from "../types";
 import { LuExternalLink } from "react-icons/lu";
+import { RiScrollToBottomLine } from "react-icons/ri";
 
 interface Props {
   post: PostType;
@@ -10,8 +11,13 @@ export const Post: React.FC<Props> = ({ post }) => {
   return (
     <article
       style={{ scrollbarWidth: "none" }}
-      className="h-60 w-60 overflow-y-auto rounded-lg border-2 border-neutral-800 bg-neutral-900"
+      className="scroll-animation relative h-60 w-60 overflow-y-auto rounded-lg border-2 border-neutral-800 bg-neutral-900"
     >
+      {post.content && (
+        <span className="absolute bottom-2 right-2">
+          <RiScrollToBottomLine className="h-6 w-6 fill-neutral-400" />
+        </span>
+      )}
       <div className="flex h-full w-full flex-col items-center justify-center gap-2 px-2">
         {post.category.name.toLocaleLowerCase() == "twitch" && (
           <img

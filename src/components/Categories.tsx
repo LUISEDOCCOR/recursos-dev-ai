@@ -83,6 +83,6 @@ export const Categories: React.FC<Props> = ({
       )}
     </div>
   ) : (
-    <span>Loading...</span>
+    <span className="loader"></span>
   );
 };

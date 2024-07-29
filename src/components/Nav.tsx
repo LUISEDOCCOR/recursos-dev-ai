@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { GoArrowUpRight } from "react-icons/go";
 
 export const Nav = () => {
   return (
@@ -25,7 +26,10 @@ export const Nav = () => {
       </figure>
       <ul className="flex items-center gap-6">
         <li className="transition-colors hover:text-neutral-400">
-          <Link to={"/add"}>Añade un recurso</Link>
+          <Link to={"/add"} className="flex items-center">
+            <span>Añade un recurso</span>
+            <GoArrowUpRight />
+          </Link>
         </li>
       </ul>
     </nav>

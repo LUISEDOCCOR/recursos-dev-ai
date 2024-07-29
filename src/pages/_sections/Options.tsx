@@ -4,7 +4,7 @@ import { Category, Post } from "../../types";
 import { FaFilter } from "react-icons/fa";
 import { toast } from "sonner";
 import { aiGetPosts } from "../../api/posts";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 interface Props {
   setEndpoint: (endpoint: string) => {};
   setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
@@ -17,6 +17,7 @@ export const Options: React.FC<Props> = ({
   setLoading,
 }) => {
   const formRef = useRef<HTMLFormElement>(null);
+  const [userMessage, setUserMessage] = useState<string>("");
 
   const onChange = (category: Category | undefined) => {
     setEndpoint(`category/${category?.id}`);
@@ -24,6 +25,7 @@ export const Options: React.FC<Props> = ({
 
   const clearFilters = () => {
     setEndpoint("posts");
+    setUserMessage("");
   };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -35,10 +37,11 @@ export const Options: React.FC<Props> = ({
       toast.error("Ingresa un mensaje");
     } else {
       setLoading(true);
-      const posts = await aiGetPosts(prompt as string);
+      const data = await aiGetPosts(prompt as string);
       setLoading(false);
-      if (posts.length > 0) {
-        setPosts(posts);
+      if (data.posts.length > 0) {
+        setPosts(data.posts);
+        setUserMessage(data.user);
       } else {
         toast.error("No encontramos nada");
         setEndpoint("posts");
@@ -48,7 +51,7 @@ export const Options: React.FC<Props> = ({
   };
 
   return (
-    <section className="grid w-full grid-cols-3 gap-16">
+    <section className="grid w-full grid-cols-3 gap-x-16 gap-y-8">
       <form
         ref={formRef}
         className="col-span-2 flex flex-col gap-4"
@@ -90,6 +93,12 @@ export const Options: React.FC<Props> = ({
           </button>
         </section>
       </article>
+      {userMessage.length != 0 && (
+        <h3 className="text-md">
+          <strong className="font-bold">Tú: </strong>
+          {userMessage}
+        </h3>
+      )}
     </section>
   );
 };

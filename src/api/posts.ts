@@ -1,5 +1,5 @@
 import { API_URL } from "./api";
-import { Post, Data } from "../types";
+import { Post, Data, AIPosts } from "../types";
 
 export const getPosts = async (endpoint?: string): Promise<Post[]> => {
   const response = await fetch(`${API_URL}/${endpoint || "posts"}`);
@@ -20,7 +20,7 @@ export const createPost = async (body: Data): Promise<boolean> => {
   return response.ok;
 };
 
-export const aiGetPosts = async (prompt: string): Promise<Post[]> => {
+export const aiGetPosts = async (prompt: string): Promise<AIPosts> => {
   const response = await fetch(`${API_URL}/ai/posts`, {
     method: "POST",
     headers: {
@@ -32,7 +32,8 @@ export const aiGetPosts = async (prompt: string): Promise<Post[]> => {
   });
 
   if (response.status != 204) {
-    const posts = await response.json();
-    return (posts as Post[]) || [];
-  } else return [];
+    const data = await response.json();
+    return data as AIPosts;
+  }
+  return { posts: [], user: "" };
 };
