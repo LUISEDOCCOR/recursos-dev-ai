@@ -2,7 +2,7 @@ import { Nav } from "../../components/Nav";
 
 export const Hero = () => {
   return (
-    <header className="w-full">
+    <header className="fixed top-0 z-10 h-16 w-full border-b border-neutral-700">
       <Nav />
     </header>
   );

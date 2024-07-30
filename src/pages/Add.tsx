@@ -62,7 +62,7 @@ export const AddPage = () => {
         <h2 className="text-2xl font-semibold">¡Añade un recurso!</h2>
         <h3 className="text-xl">Asegurate que sirva a la comunidad</h3>
       </header>
-      <main className="mt-12">
+      <main>
         <section>
           <form
             ref={formRef}

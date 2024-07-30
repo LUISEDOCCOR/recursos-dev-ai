@@ -14,10 +14,10 @@ export const Layout: React.FC<Props> = ({ children }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]">
+    <div className="min-h-screen bg-[#171717]">
       <Analytics />
-      <div className="mx-auto min-h-screen max-w-7xl pb-12">
-        <Hero />
+      <Hero />
+      <div className="mx-auto mt-28 min-h-screen max-w-7xl pb-12">
         <Toaster position="bottom-right" />
         {children}
       </div>
