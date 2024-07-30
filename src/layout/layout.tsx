@@ -14,7 +14,7 @@ export const Layout: React.FC<Props> = ({ children }) => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#171717]">
+    <div className="min-h-screen">
       <Analytics />
       <Hero />
       <div className="mx-auto mt-28 min-h-screen max-w-7xl pb-12">
