@@ -6,7 +6,7 @@ interface Props {
 export const Button: React.FC<Props> = ({ label, width }) => {
   return (
     <button
-      className={`text-md col-span-2 mx-auto ${!width ? "w-full max-w-2xl" : width} rounded-lg border bg-neutral-700 py-2 text-lg outline-none transition-opacity hover:opacity-70 focus:ring-neutral-500`}
+      className={`mx-auto text-lg ${!width ? "w-full max-w-2xl" : width} rounded-sm border border-neutral-700 py-2 outline-none transition-colors hover:bg-neutral-700`}
       type="submit"
     >
       {label}

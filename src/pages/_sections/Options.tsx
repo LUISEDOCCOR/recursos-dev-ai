@@ -1,7 +1,5 @@
 import { Button } from "../../components/Button";
-import { Categories } from "../../components/Categories";
-import { Category, Post } from "../../types";
-import { FaFilter } from "react-icons/fa";
+import { Post } from "../../types";
 import { toast } from "sonner";
 import { aiGetPosts } from "../../api/posts";
 import React, { useRef, useState } from "react";
@@ -18,15 +16,6 @@ export const Options: React.FC<Props> = ({
 }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const [userMessage, setUserMessage] = useState<string>("");
-
-  const onChange = (category: Category | undefined) => {
-    setEndpoint(`category/${category?.id}`);
-  };
-
-  const clearFilters = () => {
-    setEndpoint("posts");
-    setUserMessage("");
-  };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -51,7 +40,7 @@ export const Options: React.FC<Props> = ({
   };
 
   return (
-    <section className="grid w-full grid-cols-3 gap-x-16 gap-y-8">
+    <section className="w-full space-y-6">
       <form
         ref={formRef}
         className="col-span-2 flex flex-col gap-4"
@@ -61,44 +50,32 @@ export const Options: React.FC<Props> = ({
           ¿Necesitas ayuda? Utiliza la IA para buscar los mejores recursos para
           ti.
         </label>
-        <div className="flex gap-4">
-          <input
-            className="text-md w-full rounded-lg border p-2 text-lg outline-none"
+        <div className="flex items-end gap-4">
+          <textarea
+            className="text-md w-full rounded-sm border border-neutral-700 p-2 text-lg outline-none"
             name="prompt"
             id="prompt"
             placeholder="Dime los mejores cursos de React para poder aprender con proyectos."
-          ></input>
+          ></textarea>
           <Button label="Buscar" width="w-auto px-6" />
         </div>
       </form>
-
-      <article className="col-span-1 flex items-end gap-4">
-        <section>
-          <Categories
-            onChange={onChange}
-            name="category"
-            id="category"
-            label="Filtra los recursos por categoría"
-            inputClass="text-md w-full rounded-lg border p-2 text-lg outline-none"
-            labelClass="text-lg font-medium"
-            callback={setUserMessage}
-          />
-        </section>
-        <section>
-          <button
-            aria-label="clear filters"
-            onClick={clearFilters}
-            className="rounded-full border border-white bg-neutral-700 p-5 transition-opacity hover:opacity-70 focus:ring-neutral-500"
-          >
-            <FaFilter className="h-4 w-4" />
-          </button>
-        </section>
-      </article>
       {userMessage.length != 0 && (
-        <h3 className="text-md">
-          <strong className="font-bold">Tú: </strong>
-          {userMessage}
-        </h3>
+        <div className="space-y-2">
+          <h3 className="text-md">
+            <strong className="font-bold">Tú: </strong>
+            {userMessage}
+          </h3>
+          <button
+            className="dm-mono text-sm font-bold underline underline-offset-8"
+            onClick={() => {
+              setEndpoint("posts");
+              setUserMessage("");
+            }}
+          >
+            Limpiar
+          </button>
+        </div>
       )}
     </section>
   );

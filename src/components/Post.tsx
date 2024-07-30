@@ -11,7 +11,7 @@ export const Post: React.FC<Props> = ({ post }) => {
   return (
     <article
       style={{ scrollbarWidth: "none" }}
-      className="scroll-animation relative h-60 w-60 overflow-y-auto rounded-lg border-2 border-neutral-800 bg-neutral-900"
+      className="scroll-animation relative h-60 w-60 overflow-y-auto rounded-sm border border-neutral-700 transition-colors hover:bg-neutral-700"
     >
       {post.content && (
         <span className="absolute bottom-2 right-2">
