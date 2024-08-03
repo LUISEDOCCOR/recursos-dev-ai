@@ -65,8 +65,8 @@ export const HomePage = () => {
             </ul>
           </section>
         </div>
-        <div className="ml-96 w-full px-12">
-          <main className="mt-12 space-y-12">
+        <div className="ml-96 w-full px-6">
+          <main className="mt-12">
             <PostComponent
               userMessage={userMessage}
               setUserMessage={setUserMessage}
