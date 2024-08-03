@@ -34,7 +34,7 @@ export const Posts: React.FC<Props> = ({
       ) : (
         <div className="space-y-6">
           <article className="space-y-4">
-            <h3 className="text-md font-semibold">
+            <h3 className="text-md text-center font-semibold xl:text-left">
               👀 Ninguno de estos recursos es de nosotros.
             </h3>
             {userMessage.length != 0 && (
@@ -55,7 +55,7 @@ export const Posts: React.FC<Props> = ({
               </div>
             )}
           </article>
-          <div className="flex flex-wrap justify-start gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             {Posts?.map((post: PostType) => <Post key={post.id} post={post} />)}
           </div>
         </div>

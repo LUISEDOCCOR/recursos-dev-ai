@@ -24,7 +24,7 @@ export const Nav = () => {
           <Link to={"/"}>Recursos DEV</Link>
         </h1>
       </figure>
-      <ul className="flex items-center gap-6">
+      <ul className="hidden items-center gap-6 xl:flex">
         <li className="transition-colors hover:text-neutral-400">
           <Link to={"/add"} className="flex items-center">
             <span>Añade un recurso</span>

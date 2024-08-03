@@ -29,7 +29,7 @@ export const HomePage = () => {
   return (
     <Layout>
       <div className="flex h-full w-full">
-        <div className="fixed bottom-0 top-16 z-10 w-96 space-y-8 border-r border-neutral-700 px-6 pt-12">
+        <div className="fixed bottom-0 top-16 z-10 hidden w-96 space-y-8 border-r border-neutral-700 px-6 pt-12 xl:block">
           <Options
             setUserMessage={setUserMessage}
             setEndpoint={setEndpoint}
@@ -65,7 +65,7 @@ export const HomePage = () => {
             </ul>
           </section>
         </div>
-        <div className="ml-96 w-full px-6">
+        <div className="ml-0 w-full px-0 xl:ml-96 xl:px-6">
           <main className="mt-12">
             <PostComponent
               userMessage={userMessage}
