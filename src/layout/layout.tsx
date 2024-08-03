@@ -17,9 +17,7 @@ export const Layout: React.FC<Props> = ({ children }) => {
     <div className="min-h-screen">
       <Analytics />
       <Hero />
-      <div className="mx-auto mt-28 min-h-screen max-w-7xl pb-12">
-        {children}
-      </div>
+      <div className="mt-16 w-full pb-12">{children}</div>
       <Toaster position="bottom-right" />
     </div>
   );

@@ -16,15 +16,22 @@ export const useGetData = (): {
   const [isLoading, setLoading] = useState<boolean>(false);
 
   const setEndpoint = async (endpoint: string) => {
-    setLoading(true);
-    if (endpoint == "posts") {
-      setPosts(await getPosts());
-    } else if (endpoint == "categories") {
-      setCategories(await getCategories());
-    } else if (endpoint.includes("category/")) {
-      setPosts(await getPosts(endpoint));
+    try {
+      setLoading(true);
+      if (endpoint == "posts") {
+        setPosts(await getPosts());
+      } else if (endpoint == "categories") {
+        if (categories.length == 0) {
+          setCategories(await getCategories());
+        }
+      } else if (endpoint.includes("category/")) {
+        setPosts(await getPosts(endpoint));
+      }
+      setLoading(false);
+    } catch (e) {
+      console.log(e);
+      console.log("API error 🚨");
     }
-    setLoading(false);
   };
 
   return { posts, categories, isLoading, setEndpoint, setPosts, setLoading };

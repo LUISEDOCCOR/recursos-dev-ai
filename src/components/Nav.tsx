@@ -3,7 +3,7 @@ import { GoArrowUpRight } from "react-icons/go";
 
 export const Nav = () => {
   return (
-    <nav className="flex h-full items-center justify-between px-8 backdrop-blur-lg">
+    <nav className="flex h-full items-center justify-between px-8 backdrop-blur-md">
       <figure className="flex items-center gap-3">
         <svg
           width="24"

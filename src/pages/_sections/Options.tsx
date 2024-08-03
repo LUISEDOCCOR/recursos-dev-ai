@@ -2,20 +2,21 @@ import { Button } from "../../components/Button";
 import { Post } from "../../types";
 import { toast } from "sonner";
 import { aiGetPosts } from "../../api/posts";
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 interface Props {
   setEndpoint: (endpoint: string) => {};
   setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setUserMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const Options: React.FC<Props> = ({
   setEndpoint,
   setPosts,
   setLoading,
+  setUserMessage,
 }) => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [userMessage, setUserMessage] = useState<string>("");
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -41,42 +42,20 @@ export const Options: React.FC<Props> = ({
 
   return (
     <section className="w-full space-y-6">
-      <form
-        ref={formRef}
-        className="col-span-2 flex flex-col gap-4"
-        onSubmit={onSubmit}
-      >
+      <form ref={formRef} className="space-y-4" onSubmit={onSubmit}>
         <label htmlFor="prompt" className="text-lg font-medium">
           ¿Necesitas ayuda? Utiliza la IA para buscar los mejores recursos para
           ti.
         </label>
-        <div className="flex items-end gap-4">
-          <textarea
-            className="text-md w-full rounded-sm border border-neutral-700 p-2 text-lg outline-none"
-            name="prompt"
-            id="prompt"
-            placeholder="Dime los mejores cursos de React para poder aprender con proyectos."
-          ></textarea>
-          <Button label="Buscar" width="w-auto px-6" />
-        </div>
+        <textarea
+          className="text-md w-full rounded-sm border border-neutral-700 p-2 text-lg outline-none"
+          rows={4}
+          name="prompt"
+          id="prompt"
+          placeholder="Dime los mejores cursos de React para poder aprender con proyectos."
+        ></textarea>
+        <Button label="Buscar" width="w-auto px-6" />
       </form>
-      {userMessage.length != 0 && (
-        <div className="space-y-2">
-          <h3 className="text-md">
-            <strong className="font-bold">Tú: </strong>
-            {userMessage}
-          </h3>
-          <button
-            className="dm-mono text-sm font-bold underline underline-offset-8"
-            onClick={() => {
-              setEndpoint("posts");
-              setUserMessage("");
-            }}
-          >
-            Limpiar
-          </button>
-        </div>
-      )}
     </section>
   );
 };
