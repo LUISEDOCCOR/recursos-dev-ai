@@ -68,6 +68,7 @@ export const HomePage = () => {
           <main className="mt-12 space-y-12">
             <PostComponent
               userMessage={userMessage}
+              setIdCategory={setIdCategory}
               setUserMessage={setUserMessage}
               Posts={posts}
               isLoading={isLoading}
