@@ -8,7 +8,6 @@ interface Props {
   isLoading: boolean;
   userMessage: string;
   setEndpoint: (endpoint: string) => {};
-  setIdCategory: React.Dispatch<React.SetStateAction<number>>;
   setUserMessage: React.Dispatch<React.SetStateAction<string>>;
 }
 
@@ -18,7 +17,6 @@ export const Posts: React.FC<Props> = ({
   setEndpoint,
   userMessage,
   setUserMessage,
-  setIdCategory,
 }) => {
   return (
     <section>
@@ -50,7 +48,6 @@ export const Posts: React.FC<Props> = ({
                   onClick={() => {
                     setEndpoint("posts");
                     setUserMessage("");
-                    setIdCategory(0);
                   }}
                 >
                   Limpiar

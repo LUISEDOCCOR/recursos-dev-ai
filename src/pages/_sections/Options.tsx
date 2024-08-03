@@ -8,6 +8,7 @@ interface Props {
   setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   setUserMessage: React.Dispatch<React.SetStateAction<string>>;
+  setIdCategory: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const Options: React.FC<Props> = ({
@@ -15,6 +16,7 @@ export const Options: React.FC<Props> = ({
   setPosts,
   setLoading,
   setUserMessage,
+  setIdCategory,
 }) => {
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -37,6 +39,7 @@ export const Options: React.FC<Props> = ({
         setEndpoint("posts");
       }
       formRef.current?.reset();
+      setIdCategory(0);
     }
   };
 
