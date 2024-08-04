@@ -1,7 +1,6 @@
 import { useGetData } from "../hooks/useGetData";
 import { Category } from "../types";
 import { useState, useEffect, ChangeEvent } from "react";
-import { Link } from "react-router-dom";
 
 interface Props {
   name: string;
