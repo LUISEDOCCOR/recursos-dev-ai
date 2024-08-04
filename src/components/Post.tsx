@@ -44,7 +44,7 @@ export const Post: React.FC<Props> = ({ post }) => {
         </a>
       </div>
       {post.content && (
-        <p className="2xl:text-md dm-mono px-4 pb-4 text-sm leading-snug text-neutral-300">
+        <p className="dm-mono px-4 pb-4 text-sm leading-snug text-neutral-300 2xl:text-lg">
           {post.content}
         </p>
       )}
