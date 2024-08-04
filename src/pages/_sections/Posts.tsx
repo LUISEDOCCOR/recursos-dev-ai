@@ -55,7 +55,7 @@ export const Posts: React.FC<Props> = ({
               </div>
             )}
           </article>
-          <div className="flex flex-wrap justify-center gap-4 2xl:justify-start">
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 xl:justify-start">
             {Posts?.map((post: PostType) => <Post key={post.id} post={post} />)}
           </div>
         </div>
