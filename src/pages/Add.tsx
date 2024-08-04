@@ -23,7 +23,7 @@ const Input: React.FC<Props> = ({ id, placeholder, label, type, name }) => {
         id={id}
         type={type ? type : "text"}
         name={name}
-        className="text-md w-full max-w-2xl rounded-lg border p-4 text-lg outline-none"
+        className="text-md w-full max-w-2xl rounded-sm border border-neutral-700 p-4 text-lg outline-none"
       />
     </label>
   );
@@ -58,50 +58,54 @@ export const AddPage = () => {
 
   return (
     <Layout>
-      <header className="space-y-4">
-        <h2 className="text-2xl font-semibold">¡Añade un recurso!</h2>
-        <h3 className="text-xl">Asegurate que sirva a la comunidad</h3>
-      </header>
-      <main>
-        <section>
-          <form
-            ref={formRef}
-            onSubmit={handleSubmit}
-            className="grid grid-cols-2 gap-6"
-          >
-            <Categories
-              currentCategory={setCategory}
-              name="category_id"
-              id="category"
-              label="Categoría"
-              inputClass="text-md w-full max-w-2xl rounded-lg border p-4 text-lg outline-none"
-              labelClass="text-lg font-medium"
-            />
-            <Input
-              name="title"
-              id="title"
-              placeholder="..."
-              label={isTwitch ? "Nombre" : "Titulo"}
-            />
-            {isTwitch && (
-              <Input
-                name="urlImage"
-                id="urlImage"
-                placeholder="..."
-                label="Enlace de la imagen de perfil"
+      <div className="mx-auto max-w-2xl pt-12">
+        <header className="space-y-2">
+          <h2 className="text-2xl font-semibold">¡Añade un recurso!</h2>
+          <h3 className="text-xl">Asegurate que sirva a la comunidad 🧐</h3>
+        </header>
+        <main className="mt-8">
+          <section>
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+              <Categories
+                currentCategory={setCategory}
+                name="category_id"
+                id="category"
+                label="Categoría"
+                labelClass="text-lg font-medium"
               />
-            )}
-            <Input
-              name="content"
-              id="content"
-              placeholder="..."
-              label={isTwitch ? "¿Sobre qué va este perfil?" : "Contenido "}
-            />
-            <Input name="src" id="src" placeholder="..." label="Link" />
-            <Button label="Añadir recurso" />
-          </form>
-        </section>
-      </main>
+              <Input
+                name="title"
+                id="title"
+                placeholder="..."
+                label={isTwitch ? "Nombre" : "Titulo"}
+              />
+              {isTwitch && (
+                <Input
+                  name="urlImage"
+                  id="urlImage"
+                  placeholder="..."
+                  label="Enlace de la imagen de perfil"
+                />
+              )}
+              <label htmlFor="content" className="flex flex-col gap-4">
+                <span className="text-lg">
+                  {isTwitch ? "¿Sobre qué va este perfil?" : "Contenido"}
+                </span>
+                <textarea
+                  className="text-md w-full max-w-2xl rounded-sm border border-neutral-700 px-4 py-1 text-lg outline-none"
+                  name="content"
+                  id="content"
+                  rows={4}
+                >
+                  ...
+                </textarea>
+              </label>
+              <Input name="src" id="src" placeholder="..." label="Link" />
+              <Button label="Añadir recurso" />
+            </form>
+          </section>
+        </main>
+      </div>
     </Layout>
   );
 };
