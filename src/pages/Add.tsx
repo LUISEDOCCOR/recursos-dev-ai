@@ -102,7 +102,7 @@ export const AddPage = () => {
                 ></textarea>
               </label>
               <Input name="src" id="src" placeholder="..." label="Link" />
-              <Button label="Añadir recurso" width="text-lg w-full max-w-2xl" />
+              <Button label="Añadir recurso" style="text-lg w-full max-w-2xl" />
             </form>
           </section>
         </main>

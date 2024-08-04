@@ -59,7 +59,7 @@ export const Options: React.FC<Props> = ({
         ></textarea>
         <Button
           label="Buscar"
-          width="w-auto 2xl:px-6 px-4 2xl:text-lg text-md"
+          style="w-auto 2xl:px-6 px-4 2xl:text-lg text-md"
         />
       </form>
     </section>
