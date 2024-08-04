@@ -46,18 +46,21 @@ export const Options: React.FC<Props> = ({
   return (
     <section className="w-full space-y-6">
       <form ref={formRef} className="space-y-4" onSubmit={onSubmit}>
-        <label htmlFor="prompt" className="text-lg font-medium">
+        <label htmlFor="prompt" className="text-md font-medium 2xl:text-lg">
           ¿Necesitas ayuda? Utiliza la IA para buscar los mejores recursos para
           ti.
         </label>
         <textarea
-          className="text-md w-full rounded-sm border border-neutral-700 p-2 text-lg outline-none"
+          className="w-full rounded-sm border border-neutral-700 p-2 text-sm outline-none 2xl:text-lg"
           rows={4}
           name="prompt"
           id="prompt"
           placeholder="Dime los mejores cursos de React para poder aprender con proyectos."
         ></textarea>
-        <Button label="Buscar" width="w-auto px-6" />
+        <Button
+          label="Buscar"
+          width="w-auto 2xl:px-6 px-4 2xl:text-lg text-md"
+        />
       </form>
     </section>
   );

@@ -23,7 +23,7 @@ export const HomePage = () => {
   };
 
   const classNameButtonCategory = (id: number) => {
-    return `text-lg ${id == currentIdCategory && "underline underline-offset-8 font-semibold"}`;
+    return `text-md 2xl:text-lg ${id == currentIdCategory && "underline underline-offset-8 font-semibold"}`;
   };
 
   return (
@@ -38,9 +38,11 @@ export const HomePage = () => {
             setIdCategory={setIdCategory}
           />
           <section className="space-y-2">
-            <label className="text-xl font-medium">Categorías</label>
+            <label className="text-lg font-medium 2xl:text-xl">
+              Categorías
+            </label>
             <ul className="space-y-3">
-              <li className="text-lg">
+              <li className="text-md 2xl:text-lg">
                 <button
                   onClick={() => {
                     handleClick(0);
