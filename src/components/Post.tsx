@@ -11,11 +11,11 @@ export const Post: React.FC<Props> = ({ post }) => {
   return (
     <article
       style={{ scrollbarWidth: "none" }}
-      className="scroll-animation relative h-60 w-60 overflow-y-auto rounded-sm border border-neutral-700 transition-colors hover:bg-neutral-800"
+      className="scroll-animation relative h-48 w-48 overflow-y-auto rounded-sm border border-neutral-700 transition-colors hover:bg-neutral-800 2xl:h-60 2xl:w-60"
     >
       {post.content && (
         <span className="absolute bottom-2 right-2">
-          <RiScrollToBottomLine className="h-6 w-6 fill-neutral-400" />
+          <RiScrollToBottomLine className="h-4 w-4 fill-neutral-400 2xl:h-6 2xl:w-6" />
         </span>
       )}
       <div className="flex h-full w-full flex-col items-center justify-center gap-2 px-2">
@@ -23,13 +23,15 @@ export const Post: React.FC<Props> = ({ post }) => {
           <img
             src={`${post.urlImage}`}
             alt={`Profile image to ${post.title}`}
-            className="aspect-square h-20 w-20 rounded-full"
+            className="aspect-square h-16 w-16 rounded-full 2xl:h-20 2xl:w-20"
             title={post.title}
           />
         )}
-        <h2 className="text-center text-lg font-bold">{post.title}</h2>
+        <h2 className="text-md text-center font-bold 2xl:text-lg">
+          {post.title}
+        </h2>
         {post.category.name && (
-          <h3 className="dm-mono py-.5 rounded-full bg-neutral-700 px-2 text-sm text-neutral-300">
+          <h3 className="dm-mono py-.5 rounded-full bg-neutral-700 px-2 text-xs text-neutral-300 2xl:text-sm">
             {post.category.name}
           </h3>
         )}
@@ -38,11 +40,11 @@ export const Post: React.FC<Props> = ({ post }) => {
           target="_blank"
           href={post.src}
         >
-          <LuExternalLink className="h-7 w-7 stroke-neutral-500 transition-colors hover:stroke-neutral-400" />
+          <LuExternalLink className="h-5 w-5 stroke-neutral-500 transition-colors hover:stroke-neutral-400 2xl:h-7 2xl:w-7" />
         </a>
       </div>
       {post.content && (
-        <p className="text-md dm-mono px-4 pb-4 leading-snug text-neutral-300">
+        <p className="2xl:text-md dm-mono px-4 pb-4 text-sm leading-snug text-neutral-300">
           {post.content}
         </p>
       )}
