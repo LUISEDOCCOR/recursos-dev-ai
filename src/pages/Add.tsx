@@ -96,9 +96,8 @@ export const AddPage = () => {
                   name="content"
                   id="content"
                   rows={4}
-                >
-                  ...
-                </textarea>
+                  placeholder="..."
+                ></textarea>
               </label>
               <Input name="src" id="src" placeholder="..." label="Link" />
               <Button label="Añadir recurso" />
