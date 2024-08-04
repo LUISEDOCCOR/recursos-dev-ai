@@ -79,13 +79,15 @@ export const AddPage = () => {
                 placeholder="..."
                 label={isTwitch ? "Nombre" : "Titulo"}
               />
-              {isTwitch && (
+              {isTwitch ? (
                 <Input
                   name="urlImage"
                   id="urlImage"
                   placeholder="..."
                   label="Enlace de la imagen de perfil"
                 />
+              ) : (
+                ""
               )}
               <label htmlFor="content" className="flex flex-col gap-4">
                 <span className="text-lg">
