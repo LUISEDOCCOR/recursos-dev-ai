@@ -4,11 +4,18 @@ import { Options } from "./_sections/Options";
 import { useGetData } from "../hooks/useGetData";
 import { useEffect, useState } from "react";
 export const HomePage = () => {
-  const { posts, isLoading, setEndpoint, setPosts, setLoading, categories } =
-    useGetData();
+  const {
+    posts,
+    isLoading,
+    setEndpoint,
+    setPosts,
+    setLoading,
+    categories,
+    currentEndpoint,
+  } = useGetData();
 
   useEffect(() => {
-    setEndpoint("posts");
+    setEndpoint("page/posts/0/16");
     setEndpoint("categories");
   }, []);
 
@@ -75,6 +82,7 @@ export const HomePage = () => {
               Posts={posts}
               isLoading={isLoading}
               setEndpoint={setEndpoint}
+              currentEndpoint={currentEndpoint}
             />
           </main>
         </div>

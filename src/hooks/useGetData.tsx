@@ -10,14 +10,17 @@ export const useGetData = (): {
   setEndpoint: (endpoint: string) => {};
   setPosts: React.Dispatch<React.SetStateAction<PostType[]>>;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  currentEndpoint: string;
 } => {
   const [posts, setPosts] = useState<PostType[]>([]);
   const [categories, setCategories] = useState<CategoryType[]>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [currentEndpoint, setEndpint] = useState<string>("");
 
   const setEndpoint = async (endpoint: string) => {
     try {
       setLoading(true);
+      setEndpint(endpoint);
       if (endpoint == "posts") {
         setPosts(await getPosts());
       } else if (endpoint == "categories") {
@@ -25,6 +28,8 @@ export const useGetData = (): {
           setCategories(await getCategories());
         }
       } else if (endpoint.includes("category/")) {
+        setPosts(await getPosts(endpoint));
+      } else if (endpoint.includes("page/")) {
         setPosts(await getPosts(endpoint));
       }
       setLoading(false);
@@ -34,5 +39,13 @@ export const useGetData = (): {
     }
   };
 
-  return { posts, categories, isLoading, setEndpoint, setPosts, setLoading };
+  return {
+    posts,
+    categories,
+    isLoading,
+    setEndpoint,
+    setPosts,
+    setLoading,
+    currentEndpoint,
+  };
 };

@@ -25,6 +25,7 @@ export const Post: React.FC<Props> = ({ post }) => {
             alt={`Profile image to ${post.title}`}
             className="aspect-square h-16 w-16 rounded-full 2xl:h-20 2xl:w-20"
             title={post.title}
+            loading="lazy"
           />
         )}
         <h2 className="text-md text-center font-bold 2xl:text-lg">

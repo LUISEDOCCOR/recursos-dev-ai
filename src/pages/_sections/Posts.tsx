@@ -9,6 +9,7 @@ interface Props {
   userMessage: string;
   setEndpoint: (endpoint: string) => {};
   setUserMessage: React.Dispatch<React.SetStateAction<string>>;
+  currentEndpoint: string;
 }
 
 export const Posts: React.FC<Props> = ({
@@ -17,6 +18,7 @@ export const Posts: React.FC<Props> = ({
   setEndpoint,
   userMessage,
   setUserMessage,
+  currentEndpoint,
 }) => {
   return (
     <section>
@@ -55,9 +57,22 @@ export const Posts: React.FC<Props> = ({
               </div>
             )}
           </article>
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4 xl:justify-start">
+          <article className="flex flex-wrap justify-center gap-2 md:gap-4 xl:justify-start">
             {Posts?.map((post: PostType) => <Post key={post.id} post={post} />)}
-          </div>
+          </article>
+          <article
+            className={`mt-8 w-full justify-center ${currentEndpoint == "posts" ? "hidden" : "flex"}`}
+          >
+            <button
+              onClick={() => {
+                setEndpoint("posts");
+              }}
+              aria-label="Load all posts"
+              className="rounded-md border border-neutral-700 bg-neutral-800 px-3 py-2"
+            >
+              Cargar Todos
+            </button>
+          </article>
         </div>
       )}
     </section>
