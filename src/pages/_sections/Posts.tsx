@@ -61,7 +61,7 @@ export const Posts: React.FC<Props> = ({
             {Posts?.map((post: PostType) => <Post key={post.id} post={post} />)}
           </article>
           <article
-            className={`mt-8 w-full justify-center ${currentEndpoint == "posts" ? "hidden" : "flex"}`}
+            className={`mt-8 w-full justify-center ${currentEndpoint == "posts" || currentEndpoint.includes("category") ? "hidden" : "flex"}`}
           >
             <button
               onClick={() => {

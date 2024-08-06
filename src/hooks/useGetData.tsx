@@ -1,7 +1,7 @@
 import { getCategories } from "../api/categories";
 import { getPosts } from "../api/posts";
 import { Category as CategoryType, Post as PostType } from "../types";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 export const useGetData = (): {
   posts: PostType[];
@@ -17,27 +17,41 @@ export const useGetData = (): {
   const [isLoading, setLoading] = useState<boolean>(false);
   const [currentEndpoint, setEndpint] = useState<string>("");
 
-  const setEndpoint = async (endpoint: string) => {
-    try {
-      setLoading(true);
-      setEndpint(endpoint);
-      if (endpoint == "posts") {
-        setPosts(await getPosts());
-      } else if (endpoint == "categories") {
-        if (categories.length == 0) {
-          setCategories(await getCategories());
+  const setEndpoint = useCallback(
+    async (endpoint: string) => {
+      try {
+        if (
+          currentEndpoint.includes("page/") ||
+          (currentEndpoint.includes("categories") && endpoint == "posts")
+        ) {
+          const newPosts = await getPosts();
+          newPosts.splice(0, 16);
+          const allPosts = posts.concat(newPosts);
+          setPosts(allPosts);
+        } else if (endpoint == "posts") {
+          setLoading(true);
+          setPosts(await getPosts());
+        } else if (endpoint == "categories") {
+          if (categories.length == 0) {
+            setLoading(true);
+            setCategories(await getCategories());
+          }
+        } else if (endpoint.includes("category/")) {
+          setLoading(true);
+          setPosts(await getPosts(endpoint));
+        } else if (endpoint.includes("page/")) {
+          setLoading(true);
+          setPosts(await getPosts(endpoint));
         }
-      } else if (endpoint.includes("category/")) {
-        setPosts(await getPosts(endpoint));
-      } else if (endpoint.includes("page/")) {
-        setPosts(await getPosts(endpoint));
+        setEndpint(endpoint);
+        setLoading(false);
+      } catch (e) {
+        console.log(e);
+        console.log("API error 🚨");
       }
-      setLoading(false);
-    } catch (e) {
-      console.log(e);
-      console.log("API error 🚨");
-    }
-  };
+    },
+    [currentEndpoint],
+  );
 
   return {
     posts,
